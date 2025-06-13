@@ -1,3 +1,270 @@
+// 🚀 INSANE BACKGROUND ANIMATION SYSTEM
+class EpicBackgroundAnimator {
+    constructor() {
+        this.particles = [];
+        this.matrixChars = [];
+        this.init();
+    }
+    
+    init() {
+        this.createParticleSystem();
+        this.createMatrixRain();
+        this.addMouseInteraction();
+        this.startAnimationLoop();
+        console.log('🎨 Epic background animations initialized!');
+    }
+    
+    // 💫 PARTICLE SYSTEM
+    createParticleSystem() {
+        const container = document.querySelector('.particles-container');
+        if (!container) return;
+        
+        // Create initial particles
+        for (let i = 0; i < 50; i++) {
+            this.createParticle();
+        }
+        
+        // Continuously spawn new particles
+        setInterval(() => {
+            if (this.particles.length < 100) {
+                this.createParticle();
+            }
+        }, 200);
+    }
+    
+    createParticle() {
+        const container = document.querySelector('.particles-container');
+        if (!container) return;
+        
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        
+        // Random starting position
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.bottom = '-10px';
+        
+        // Random color from palette
+        const colors = ['#6366f1', '#ec4899', '#f59e0b', '#10b981', '#8b5cf6', '#ef4444'];
+        particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+        
+        // Random animation duration
+        particle.style.animationDuration = (Math.random() * 8 + 5) + 's';
+        particle.style.animationDelay = Math.random() * 2 + 's';
+        
+        container.appendChild(particle);
+        this.particles.push(particle);
+        
+        // Remove particle after animation
+        setTimeout(() => {
+            if (particle.parentNode) {
+                particle.parentNode.removeChild(particle);
+                this.particles = this.particles.filter(p => p !== particle);
+            }
+        }, 15000);
+    }
+    
+    // 🔢 MATRIX RAIN EFFECT
+    createMatrixRain() {
+        const container = document.getElementById('matrix-rain');
+        if (!container) return;
+        
+        const chars = '01$£€¥₿₹₽₩₪₦₡₨₱₲₴₵₶₷₸₹₺₻₼₽₾₿';
+        
+        // Create matrix columns
+        for (let i = 0; i < 20; i++) {
+            setTimeout(() => {
+                this.createMatrixColumn(chars, i * 50);
+            }, i * 100);
+        }
+        
+        // Continuously spawn matrix characters
+        setInterval(() => {
+            if (Math.random() < 0.3) {
+                this.createMatrixColumn(chars, Math.random() * window.innerWidth);
+            }
+        }, 500);
+    }
+    
+    createMatrixColumn(chars, x) {
+        const container = document.getElementById('matrix-rain');
+        if (!container) return;
+        
+        const char = document.createElement('div');
+        char.className = 'matrix-char';
+        char.textContent = chars[Math.floor(Math.random() * chars.length)];
+        char.style.left = x + 'px';
+        char.style.top = '-20px';
+        char.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        
+        // Random green tint
+        const opacity = Math.random() * 0.8 + 0.2;
+        char.style.color = `rgba(0, 255, 65, ${opacity})`;
+        
+        container.appendChild(char);
+        this.matrixChars.push(char);
+        
+        // Remove character after animation
+        setTimeout(() => {
+            if (char.parentNode) {
+                char.parentNode.removeChild(char);
+                this.matrixChars = this.matrixChars.filter(c => c !== char);
+            }
+        }, 6000);
+    }
+    
+    // 🖱️ MOUSE INTERACTION EFFECTS
+    addMouseInteraction() {
+        let mouseX = 0;
+        let mouseY = 0;
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            // Create particle burst on mouse movement
+            if (Math.random() < 0.1) {
+                this.createMouseParticle(mouseX, mouseY);
+            }
+            
+            // Move orbs towards mouse
+            this.updateOrbsWithMouse(mouseX, mouseY);
+        });
+        
+        // Create explosion on click
+        document.addEventListener('click', (e) => {
+            this.createClickExplosion(e.clientX, e.clientY);
+        });
+    }
+    
+    createMouseParticle(x, y) {
+        const particle = document.createElement('div');
+        particle.style.cssText = `
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: #f59e0b;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            left: ${x}px;
+            top: ${y}px;
+            animation: mouseParticle 1s ease-out forwards;
+            box-shadow: 0 0 10px #f59e0b;
+        `;
+        
+        document.body.appendChild(particle);
+        
+        setTimeout(() => particle.remove(), 1000);
+    }
+    
+    createClickExplosion(x, y) {
+        for (let i = 0; i < 15; i++) {
+            setTimeout(() => {
+                const particle = document.createElement('div');
+                const angle = (i / 15) * Math.PI * 2;
+                const velocity = Math.random() * 100 + 50;
+                const size = Math.random() * 6 + 2;
+                
+                particle.style.cssText = `
+                    position: fixed;
+                    width: ${size}px;
+                    height: ${size}px;
+                    background: hsl(${Math.random() * 360}, 70%, 60%);
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 9999;
+                    left: ${x}px;
+                    top: ${y}px;
+                    animation: explode 1.5s ease-out forwards;
+                    box-shadow: 0 0 10px currentColor;
+                `;
+                
+                // Set explosion direction
+                particle.style.setProperty('--dx', Math.cos(angle) * velocity + 'px');
+                particle.style.setProperty('--dy', Math.sin(angle) * velocity + 'px');
+                
+                document.body.appendChild(particle);
+                
+                setTimeout(() => particle.remove(), 1500);
+            }, i * 20);
+        }
+    }
+    
+    updateOrbsWithMouse(mouseX, mouseY) {
+        const orbs = document.querySelectorAll('.orb');
+        orbs.forEach((orb, index) => {
+            const rect = orb.getBoundingClientRect();
+            const orbX = rect.left + rect.width / 2;
+            const orbY = rect.top + rect.height / 2;
+            
+            const dx = mouseX - orbX;
+            const dy = mouseY - orbY;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance < 200) {
+                const force = (200 - distance) / 200;
+                const moveX = dx * force * 0.1;
+                const moveY = dy * force * 0.1;
+                
+                orb.style.transform = `translate(${moveX}px, ${moveY}px) scale(${1 + force * 0.2})`;
+                orb.style.filter = `blur(${1 - force}px) brightness(${1 + force * 0.5})`;
+            }
+        });
+    }
+    
+    // 🔄 ANIMATION LOOP
+    startAnimationLoop() {
+        const animate = () => {
+            // Randomly change particle colors
+            this.particles.forEach(particle => {
+                if (Math.random() < 0.001) {
+                    const colors = ['#6366f1', '#ec4899', '#f59e0b', '#10b981', '#8b5cf6', '#ef4444'];
+                    particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                }
+            });
+            
+            // Randomly adjust geometric shapes
+            const shapes = document.querySelectorAll('.shape');
+            shapes.forEach(shape => {
+                if (Math.random() < 0.001) {
+                    shape.style.filter = `drop-shadow(0 0 ${Math.random() * 30 + 10}px currentColor) hue-rotate(${Math.random() * 360}deg)`;
+                }
+            });
+            
+            requestAnimationFrame(animate);
+        };
+        
+        animate();
+    }
+}
+
+// Add explosion animation styles
+const animationStyles = document.createElement('style');
+animationStyles.textContent = `
+    @keyframes mouseParticle {
+        0% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(0) translateY(-30px);
+            opacity: 0;
+        }
+    }
+    
+    @keyframes explode {
+        0% {
+            transform: scale(1) translate(0, 0);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(0) translate(var(--dx), var(--dy));
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(animationStyles);
+
 // Game Data Structure
 const gameData = {
     1: [

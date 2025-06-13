@@ -1,25 +1,25 @@
-/* Apple-style Design System */
+/* Epic Dark Theme Design System */
 :root {
-    --primary-color: #007AFF;
-    --primary-dark: #0056CC;
-    --secondary-color: #5856D6;
-    --success-color: #34C759;
-    --warning-color: #FF9500;
-    --error-color: #FF3B30;
+    --primary-color: #6366f1;
+    --primary-dark: #4f46e5;
+    --secondary-color: #ec4899;
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    --error-color: #ef4444;
     
-    --text-primary: #1D1D1F;
-    --text-secondary: #86868B;
-    --text-tertiary: #D2D2D7;
+    --text-primary: #ffffff;
+    --text-secondary: #d1d5db;
+    --text-tertiary: #9ca3af;
     
-    --bg-primary: #FFFFFF;
-    --bg-secondary: #F2F2F7;
-    --bg-tertiary: #E5E5EA;
-    --bg-elevated: #FFFFFF;
+    --bg-primary: rgba(15, 15, 35, 0.95);
+    --bg-secondary: rgba(26, 26, 46, 0.9);
+    --bg-tertiary: rgba(55, 65, 81, 0.8);
+    --bg-elevated: rgba(31, 41, 55, 0.95);
     
-    --border-color: #D2D2D7;
-    --shadow-light: 0 1px 3px rgba(0, 0, 0, 0.1);
-    --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.15);
-    --shadow-heavy: 0 8px 24px rgba(0, 0, 0, 0.2);
+    --border-color: rgba(107, 114, 128, 0.3);
+    --shadow-light: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-heavy: 0 8px 24px rgba(0, 0, 0, 0.5);
     
     --radius-small: 8px;
     --radius-medium: 12px;
@@ -38,18 +38,377 @@
     box-sizing: border-box;
 }
 
+/* 🚀 INSANELY COOL BACKGROUND ANIMATIONS */
+
+/* Base body setup for animations */
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
-    background: linear-gradient(135deg, var(--bg-secondary) 0%, #E8E8ED 100%);
+    background: #0f0f23;
     color: var(--text-primary);
     line-height: 1.6;
     min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
 }
 
+/* Animated Background Container */
+.animated-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #0f0f23 100%);
+    animation: backgroundPulse 20s ease-in-out infinite;
+}
+
+@keyframes backgroundPulse {
+    0%, 100% { 
+        background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #0f0f23 100%);
+    }
+    25% { 
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f0f23 50%, #1a1a2e 100%);
+    }
+    50% { 
+        background: linear-gradient(135deg, #16213e 0%, #0f0f23 25%, #1a1a2e 50%, #16213e 100%);
+    }
+    75% { 
+        background: linear-gradient(135deg, #0f0f23 0%, #16213e 25%, #1a1a2e 50%, #0f0f23 100%);
+    }
+}
+
+/* 🌟 FLOATING ORBS - EPIC GLOWING SPHERES */
+.floating-orbs {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(99, 102, 241, 0.8), rgba(139, 92, 246, 0.6), rgba(236, 72, 153, 0.4));
+    filter: blur(1px);
+    animation: orbFloat 15s ease-in-out infinite;
+    box-shadow: 
+        0 0 60px rgba(99, 102, 241, 0.5),
+        inset 0 0 30px rgba(255, 255, 255, 0.1);
+}
+
+.orb-1 {
+    width: 200px;
+    height: 200px;
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+    animation-duration: 20s;
+}
+
+.orb-2 {
+    width: 150px;
+    height: 150px;
+    top: 60%;
+    right: 15%;
+    animation-delay: -5s;
+    animation-duration: 25s;
+}
+
+.orb-3 {
+    width: 120px;
+    height: 120px;
+    bottom: 20%;
+    left: 20%;
+    animation-delay: -10s;
+    animation-duration: 18s;
+}
+
+.orb-4 {
+    width: 180px;
+    height: 180px;
+    top: 30%;
+    right: 40%;
+    animation-delay: -15s;
+    animation-duration: 22s;
+}
+
+.orb-5 {
+    width: 100px;
+    height: 100px;
+    bottom: 40%;
+    right: 20%;
+    animation-delay: -8s;
+    animation-duration: 16s;
+}
+
+.orb-6 {
+    width: 160px;
+    height: 160px;
+    top: 70%;
+    left: 60%;
+    animation-delay: -12s;
+    animation-duration: 24s;
+}
+
+@keyframes orbFloat {
+    0%, 100% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+        opacity: 0.6;
+    }
+    25% {
+        transform: translate(100px, -80px) scale(1.2) rotate(90deg);
+        opacity: 0.8;
+    }
+    50% {
+        transform: translate(-50px, -160px) scale(0.8) rotate(180deg);
+        opacity: 0.4;
+    }
+    75% {
+        transform: translate(-120px, -40px) scale(1.1) rotate(270deg);
+        opacity: 0.9;
+    }
+}
+
+/* 🔺 GEOMETRIC SHAPES - FLOATING POLYGONS */
+.geometric-shapes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.shape {
+    position: absolute;
+    animation: shapeFloat 12s linear infinite;
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-bottom: 40px solid rgba(245, 158, 11, 0.6);
+    top: 20%;
+    left: 80%;
+    animation-delay: 0s;
+    filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.8));
+}
+
+.square {
+    width: 40px;
+    height: 40px;
+    background: rgba(16, 185, 129, 0.6);
+    top: 50%;
+    left: 10%;
+    animation-delay: -3s;
+    filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.8));
+}
+
+.circle {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: rgba(239, 68, 68, 0.6);
+    top: 80%;
+    right: 30%;
+    animation-delay: -6s;
+    filter: drop-shadow(0 0 20px rgba(239, 68, 68, 0.8));
+}
+
+.diamond {
+    width: 30px;
+    height: 30px;
+    background: rgba(168, 85, 247, 0.6);
+    transform: rotate(45deg);
+    top: 30%;
+    left: 50%;
+    animation-delay: -9s;
+    filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.8));
+}
+
+.hexagon {
+    width: 40px;
+    height: 34.64px;
+    background: rgba(14, 165, 233, 0.6);
+    position: relative;
+    top: 70%;
+    right: 10%;
+    animation-delay: -12s;
+    filter: drop-shadow(0 0 20px rgba(14, 165, 233, 0.8));
+}
+
+.hexagon:before,
+.hexagon:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+}
+
+.hexagon:before {
+    bottom: 100%;
+    border-bottom: 11.55px solid rgba(14, 165, 233, 0.6);
+}
+
+.hexagon:after {
+    top: 100%;
+    border-top: 11.55px solid rgba(14, 165, 233, 0.6);
+}
+
+@keyframes shapeFloat {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* 🌊 GRADIENT WAVES - FLOWING ENERGY */
+.gradient-waves {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.wave {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, 
+        transparent 0%,
+        rgba(99, 102, 241, 0.1) 25%,
+        rgba(236, 72, 153, 0.1) 50%,
+        rgba(245, 158, 11, 0.1) 75%,
+        transparent 100%);
+    animation: waveFlow 15s linear infinite;
+}
+
+.wave-1 {
+    top: -50%;
+    left: -50%;
+    animation-delay: 0s;
+    animation-duration: 20s;
+}
+
+.wave-2 {
+    top: -50%;
+    right: -50%;
+    animation-delay: -7s;
+    animation-duration: 25s;
+    animation-direction: reverse;
+}
+
+.wave-3 {
+    bottom: -50%;
+    left: -50%;
+    animation-delay: -14s;
+    animation-duration: 18s;
+}
+
+@keyframes waveFlow {
+    0% {
+        transform: rotate(0deg) scale(0.8);
+        opacity: 0.3;
+    }
+    50% {
+        transform: rotate(180deg) scale(1.2);
+        opacity: 0.6;
+    }
+    100% {
+        transform: rotate(360deg) scale(0.8);
+        opacity: 0.3;
+    }
+}
+
+/* 💫 PARTICLE SYSTEM - MAGICAL DOTS */
+.particles-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: #6366f1;
+    border-radius: 50%;
+    opacity: 0.7;
+    animation: particleMove 10s linear infinite;
+    box-shadow: 0 0 10px currentColor;
+}
+
+@keyframes particleMove {
+    0% {
+        transform: translateY(100vh) translateX(0) scale(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.7;
+        transform: scale(1);
+    }
+    90% {
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(-100px) translateX(100px) scale(0);
+        opacity: 0;
+    }
+}
+
+/* 🔢 MATRIX RAIN EFFECT - CYBER VIBES */
+.matrix-rain {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    opacity: 0.3;
+}
+
+.matrix-char {
+    position: absolute;
+    color: #00ff41;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    font-weight: bold;
+    text-shadow: 0 0 10px #00ff41;
+    animation: matrixFall 3s linear infinite;
+}
+
+@keyframes matrixFall {
+    0% {
+        transform: translateY(-100px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+
+/* 💎 ENHANCED APP CONTAINER */
 .app {
+    position: relative;
+    z-index: 1;
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    backdrop-filter: blur(0.5px);
 }
 
 .container {
@@ -66,6 +425,8 @@ body {
     box-shadow: var(--shadow-light);
     position: relative;
     overflow: hidden;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .header::before {
@@ -75,7 +436,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(0, 122, 255, 0.05) 0%, rgba(88, 86, 214, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
     pointer-events: none;
 }
 
@@ -86,6 +447,7 @@ body {
     margin-bottom: 8px;
     letter-spacing: -0.02em;
     position: relative;
+    text-shadow: 0 0 30px rgba(99, 102, 241, 0.5);
 }
 
 .subtitle {
@@ -99,6 +461,8 @@ body {
 .main {
     flex: 1;
     padding: 40px 0 60px;
+    background: rgba(15, 15, 35, 0.3);
+    backdrop-filter: blur(5px);
 }
 
 /* Game Stats */
@@ -121,11 +485,13 @@ body {
     border: 1px solid var(--border-color);
     min-width: 100px;
     transition: all var(--transition-fast);
+    backdrop-filter: blur(10px);
 }
 
 .stat-item:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-medium);
+    border-color: var(--primary-color);
 }
 
 .stat-label {
@@ -139,6 +505,7 @@ body {
     font-size: 1.75rem;
     font-weight: 700;
     color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
 }
 
 /* Level Selector */
@@ -152,6 +519,24 @@ body {
     font-weight: 600;
     margin-bottom: 32px;
     color: var(--text-primary);
+    text-shadow: 0 0 20px rgba(99, 102, 241, 0.6);
+    background: linear-gradient(135deg, #ffffff 0%, #d1d5db 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+}
+
+.level-selector h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: 2px;
 }
 
 .level-buttons {
@@ -174,12 +559,32 @@ body {
     align-items: center;
     gap: 8px;
     box-shadow: var(--shadow-light);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.level-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(236, 72, 153, 0.05) 100%);
+    pointer-events: none;
+    transition: opacity var(--transition-fast);
+    opacity: 0;
 }
 
 .level-btn:hover {
     border-color: var(--primary-color);
     transform: translateY(-4px);
-    box-shadow: var(--shadow-medium);
+    box-shadow: 0 8px 32px rgba(99, 102, 241, 0.3);
+}
+
+.level-btn:hover::before {
+    opacity: 1;
 }
 
 .level-btn:active {
@@ -190,12 +595,19 @@ body {
     font-size: 1.25rem;
     font-weight: 600;
     color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
 }
 
 .level-cards {
     font-size: 1rem;
     font-weight: 500;
     color: var(--text-primary);
+}
+
+.level-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-top: 4px;
 }
 
 .level-desc {
@@ -219,6 +631,11 @@ body {
     margin-bottom: 32px;
     flex-wrap: wrap;
     gap: 16px;
+    background: var(--bg-elevated);
+    padding: 20px;
+    border-radius: var(--radius-large);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
 }
 
 .back-btn, .restart-btn {
@@ -231,11 +648,14 @@ body {
     cursor: pointer;
     transition: all var(--transition-fast);
     color: var(--text-primary);
+    backdrop-filter: blur(10px);
 }
 
 .back-btn:hover, .restart-btn:hover {
-    background: var(--bg-secondary);
+    background: var(--primary-color);
+    color: white;
     transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
 }
 
 /* Cards Container */
@@ -305,12 +725,14 @@ body {
     box-shadow: var(--shadow-light);
     border: 1px solid var(--border-color);
     transition: all var(--transition-fast);
+    backdrop-filter: blur(10px);
 }
 
 .card-front {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     color: white;
     font-size: 2rem;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .card-back {
@@ -321,6 +743,7 @@ body {
     font-weight: 500;
     color: var(--text-primary);
     line-height: 1.4;
+    border: 1px solid var(--primary-color);
 }
 
 .memory-card:hover .card-inner {
@@ -367,6 +790,20 @@ body {
     box-shadow: var(--shadow-heavy);
     border: 1px solid var(--border-color);
     animation: modalSlideIn var(--transition-medium);
+    backdrop-filter: blur(20px);
+    position: relative;
+    overflow: hidden;
+}
+
+.modal-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+    pointer-events: none;
 }
 
 @keyframes modalSlideIn {
@@ -390,12 +827,17 @@ body {
     font-weight: 600;
     margin-bottom: 16px;
     color: var(--text-primary);
+    text-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+    position: relative;
+    z-index: 1;
 }
 
 .modal-content p {
     color: var(--text-secondary);
     margin-bottom: 32px;
     font-size: 1rem;
+    position: relative;
+    z-index: 1;
 }
 
 .modal-stats {
@@ -403,6 +845,8 @@ body {
     justify-content: center;
     gap: 32px;
     margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
 }
 
 .modal-stat {
@@ -415,6 +859,7 @@ body {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
 }
 
 .modal-stat-label {
@@ -428,6 +873,8 @@ body {
     gap: 16px;
     justify-content: center;
     flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
 }
 
 /* Buttons */
@@ -449,22 +896,59 @@ body {
 .btn-primary {
     background: var(--primary-color);
     color: white;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
 }
 
 .btn-primary:hover {
     background: var(--primary-dark);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
 }
 
 .btn-secondary {
     background: var(--bg-secondary);
     color: var(--text-primary);
     border: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
 }
 
 .btn-secondary:hover {
     background: var(--bg-tertiary);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
+}
+
+/* 🖱️ MOUSE INTERACTION ANIMATIONS */
+@keyframes mouseParticle {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0) translateY(-50px);
+    }
+}
+
+@keyframes explode {
+    0% {
+        opacity: 1;
+        transform: scale(1) translate(0, 0);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0) translate(var(--dx), var(--dy));
+    }
+}
+
+/* Enhanced orb hover effects */
+.orb:hover {
+    transform: scale(1.1);
+    filter: blur(0.5px) brightness(1.2);
+    box-shadow: 
+        0 0 80px rgba(99, 102, 241, 0.8),
+        inset 0 0 40px rgba(255, 255, 255, 0.2);
 }
 
 /* Responsive Design */
